@@ -10,10 +10,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
+import java.time.Duration;
 
-import static java.awt.SystemColor.text;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -22,7 +23,6 @@ class CallbackTest {
 
     @BeforeAll
     public static void setupAll() {
-        System.setProperty("webdriver.chrome.driver", "C:\\JAVA");
         WebDriverManager.chromedriver().setup();
     }
 
@@ -31,8 +31,9 @@ class CallbackTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
-        //options.addArguments("--headless");
+        options.addArguments("--headless");
         driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("http://localhost:9999");
     }
 
@@ -48,7 +49,7 @@ class CallbackTest {
         form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Василий");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79270000000");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        driver.findElement(By.cssSelector(".button")).click();
+        driver.findElement(By.cssSelector("button[type='button']")).click();
         WebElement result = driver.findElement(By.cssSelector("[data-test-id=order-success]"));
         assertTrue(result.isDisplayed());
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", result.getText().trim());
