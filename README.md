@@ -1,1 +1,1 @@
-[![Java CI with Gradle](https://github.com/dimmakarovdv/Order-a-card/actions/workflows/gragle.yml/badge.svg)](https://github.com/dimmakarovdv/Order-a-card/actions/workflows/gragle.yml)
+[![Java CI with Gradle](https://github.com/dimmakarovdv/Order-a-card/actions/workflows/gradle.yml/badge.svg)](https://github.com/dimmakarovdv/Order-a-card/actions/workflows/gradle.yml)
